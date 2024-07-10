@@ -46,6 +46,14 @@ class _HistoryState extends State<History> {
           );
         }),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        disabledElevation: 0,
+        backgroundColor: (data.length==0) ? Theme.of(context).colorScheme.surfaceVariant:null,
+        onPressed: (data.length==0) ? null : () => Navigator.pop(context,'clear'),
+        label: Row(
+          children: [Icon(Icons.close),Text('Clear History')],
+        ),
+      ),
     );
   }
 }

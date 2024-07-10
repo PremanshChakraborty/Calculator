@@ -159,7 +159,11 @@ class _HomeState extends State<Home> {
                         onPressed: () async{
                           dynamic result = await Navigator.pushNamed(context,'history',arguments: history);
                           int cp = exp.selection.base.offset;
-                          add(result??'',cp);
+                          if(result=='clear') {history=[];
+                          SharedPreferences perf = await SharedPreferences.getInstance();
+                          perf.setStringList('history', Calculation.tostring(history));
+                          }
+                          else add(result??'',cp);
                         },
                         icon: Icon(
                           Icons.history,
@@ -279,7 +283,7 @@ class _HomeState extends State<Home> {
                         else if (ans != null) {
                           SharedPreferences perf=await SharedPreferences.getInstance();
                           setState(() {
-                            history.add(Calculation(exp: exp.text, answer: ans));
+                            history.insert(0,Calculation(exp: exp.text, answer: ans));
                             exp.text = ans;
                             answer.text = '';
                           });
