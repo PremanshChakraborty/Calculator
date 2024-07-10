@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
   }
   int trace_neg(int cp){
     for(int i=cp-1;i>=0;i--){
-      if(!StringUtils.isDigit(exp.text[i])) return i+1;
+      if(!StringUtils.isDigit(exp.text[i])&&exp.text[i]!='.') return i+1;
     }
     return 0;
   }
